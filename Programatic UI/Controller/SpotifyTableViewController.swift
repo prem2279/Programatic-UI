@@ -69,10 +69,10 @@ extension SpotifyTableViewController: SpotifyProtocol{
     func getData(for url: String) -> [Song]? {
         
         if isInternetAvailable{
-            return NetworkManager.instance.getDataFromServer(for: url)
+            return NetworkManager.instance.getSongDataFromServer(for: url)
         }
         
-        return MockNetworkManager.instance.getDataFromServer(for: url)
+        return MockNetworkManager.instance.getSongDataFromServer(for: url)
     }
         
 }

@@ -7,8 +7,10 @@
 
 enum TableViewCells{
     static let spotifyCell = "SpotifyCell"
+    static let movieCell = "MovieCell"
 }
 
 enum CollectionViewCells{
     static let carCell = "CarCell"
+    static let colorCell = "ColorCell"
 }

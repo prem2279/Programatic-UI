@@ -127,7 +127,7 @@ extension ProfileController{
     }
     
     @objc func moveToMoviesScreen(){
-        let destination = MovieController()
+        let destination = MovieDetailsController()
         destination.title = "Movie Screen"
         destination.view.backgroundColor = .systemMint
         navigationController?.pushViewController(destination, animated: true)

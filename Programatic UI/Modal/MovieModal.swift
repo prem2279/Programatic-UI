@@ -7,15 +7,29 @@
 
 import UIKit
 
-struct Movie {
+struct Movie: Decodable {
     let title: String
     let genre: String
     let rating: Double
-    let year: Int
+    let year: Double
     let overview: String
     let director: String
-    let duration: String
-    let bannerColor: UIColor
+    let duration: String?
+    //let bannerColor: UIColor?
+    
+    enum CodingKeys: String, CodingKey{
+        case title
+        case genre = "category"
+        case rating
+        case year = "price"
+        case overview = "description"
+        case director = "brand"
+        case duration
+    }
+}
+
+struct Product: Decodable {
+    let products: [Movie]
 }
  
 

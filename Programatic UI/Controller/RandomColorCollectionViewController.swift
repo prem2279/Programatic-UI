@@ -12,21 +12,21 @@ protocol RandomColorProtocol{
 
 class RandomColorCollectionViewController: UIViewController{
     
-    var carsCollectionView: UICollectionView = {
+    var randomColorsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 100, height: 100)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .black
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
         return collectionView
     }()
     
     override func viewDidLoad(){
         super.viewDidLoad()
         setupUI()
-        carsCollectionView.dataSource = self
-        carsCollectionView.delegate = self
-        carsCollectionView.register(RandomColorCollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCells.carCell)
+        randomColorsCollectionView.dataSource = self
+        randomColorsCollectionView.delegate = self
+        randomColorsCollectionView.register(RandomColorCollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCells.colorCell)
         
     }
 }
@@ -37,29 +37,26 @@ extension RandomColorCollectionViewController: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.carCell, for: indexPath) as? RandomColorCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.colorCell, for: indexPath) as? RandomColorCollectionViewCell
         cell?.label.text = "Cell \(indexPath.row)"
         cell?.backgroundColor = .random
         
         return cell ?? UICollectionViewCell()
     }
-    
-    
-    
-    
 }
 
 extension RandomColorCollectionViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width/5, height: 100)
+        if(indexPath.row < 10 ){
+            return CGSize(width: view.frame.width/5, height: 100)
+        }
+        return CGSize(width: 100, height: 100)
     }
-    
-    
 }
 
 extension RandomColorCollectionViewController: RandomColorProtocol{
     func setupUI(){
-        view.addSubview(carsCollectionView)
-        pinAllCorners(child: carsCollectionView, parent: view, leading: 20, trailing: -20)
+        view.addSubview(randomColorsCollectionView)
+        pinAllCorners(child: randomColorsCollectionView, parent: view, leading: 20, trailing: -20)
     }
 }

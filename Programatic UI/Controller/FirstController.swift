@@ -9,7 +9,7 @@ import UIKit
 
 class FirstController: UIViewController {
     
-    private let topLeftButton = UIElements.button("TL")
+    private let topLeftButton = UIElements.button("Color", action: #selector(moveToRandomColorsScreen))
     private let middleLeftButton = UIElements.button("Cars", action: #selector(moveToCarsScreen))
     private let bottomLeftButton = UIElements.button("Spotify", action: #selector(moveToSpotifyScreen))
     
@@ -17,7 +17,7 @@ class FirstController: UIViewController {
     private let middleMiddleButton = UIElements.button("Second",action: #selector(moveToSecondScreen))
     private let bottomMiddleButton = UIElements.button("Movie", action: #selector(moveToMoviesScreen))
     
-    private let topRightButton = UIElements.button("TR")
+    private let topRightButton = UIElements.button("Download", action: #selector(moveToDownloadScreen))
     private let middleRightButton = UIElements.button("MR")
     private let bottomRightButton = UIElements.button("BR")
     
@@ -119,9 +119,9 @@ extension FirstController{
     }
     
     @objc func moveToMoviesScreen(){
-        let destination = MovieController()
-        destination.title = "Movie Screen"
-        destination.view.backgroundColor = .systemMint
+        let destination = MoviesDashboardController()
+        destination.title = "Movies Dashboard"
+        destination.view.backgroundColor = .black
         navigationController?.pushViewController(destination, animated: true)
     }
     
@@ -139,9 +139,24 @@ extension FirstController{
         navigationController?.pushViewController(nextScreen, animated: true)
     }
     
-    @objc func moveToCarsScreen(){
+    @objc func moveToRandomColorsScreen(){
         let nextScreen = RandomColorCollectionViewController()
+        nextScreen.title = "Random Color Cells"
+        nextScreen.view.backgroundColor = .black
+        navigationController?.pushViewController(nextScreen, animated: true)
+    }
+    
+    @objc func moveToCarsScreen(){
+        let nextScreen = CarsCollectionViewController()
         nextScreen.title = "Cars"
+        nextScreen.view.backgroundColor = .black
+        navigationController?.pushViewController(nextScreen, animated: true)
+    }
+    
+    
+    @objc func moveToDownloadScreen(){
+        let nextScreen = DownloadViewController()
+        nextScreen.title = "Mini Downloader"
         nextScreen.view.backgroundColor = .black
         navigationController?.pushViewController(nextScreen, animated: true)
     }

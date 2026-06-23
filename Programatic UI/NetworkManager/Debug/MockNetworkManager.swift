@@ -6,11 +6,18 @@
 //
 
 final class MockNetworkManager: Sendable, NetworkProtocol{
+    
     static let instance = MockNetworkManager()
     
     private init(){}
     
-    func getDataFromServer(for url: String) -> [Song]?{
+    func getSongDataFromServer(for url: String) -> [Song]? {
         return getSongsData()
     }
+    
+    func getMovieDataFromServer(for url: String, completion: @escaping([Movie]) -> ()) {
+        //return getMoviesData()
+        completion(getMoviesData())
+    }
+    
 }

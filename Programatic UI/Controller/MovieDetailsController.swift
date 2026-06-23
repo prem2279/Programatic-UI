@@ -6,14 +6,13 @@
 //
 import UIKit
 
-class MovieController: UIViewController{
-    
+class MovieDetailsController: UIViewController{
     
     let genreLabel = UIElements.label(text: "genre", textColor: .white, fontSize: 15, fontWeight: .bold)
     let titleLabel = UIElements.label(text: "Title", textColor: .white, fontSize: 25, fontWeight: .bold)
     let ratingLabel = UIElements.label(text: "5.0", textColor: .white, fontSize: 18, fontWeight: .semibold)
-    let overviewLabel = UIElements.label(text: "Overview", fontSize: 20, fontWeight: .semibold)
-    let detailsLabel = UIElements.label(text: "Details", fontSize: 20, fontWeight: .semibold)
+    let overviewLabel = UIElements.label(text: "Overview", textColor: .white, fontSize: 20, fontWeight: .semibold)
+    let detailsLabel = UIElements.label(text: "Details", textColor: .white, fontSize: 20, fontWeight: .semibold)
     let descriptionLabel = UIElements.label(text: "Description",textColor: .white, fontSize: 18, fontWeight: .regular)
     let directorLabel = UIElements.label(text: "Description",textColor: .white, fontSize: 18, fontWeight: .regular)
     let yearLabel = UIElements.label(text: "2021",textColor: .white, fontSize: 18, fontWeight: .semibold)
@@ -74,12 +73,12 @@ class MovieController: UIViewController{
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        loadData()
+        //loadData()
         setUpUI()
     }
 }
 
-extension MovieController{
+extension MovieDetailsController{
     func setUpUI(){
         
         view.addSubview(scrollView)
@@ -155,18 +154,21 @@ extension MovieController{
         
 }
 
-extension MovieController{
-    func loadData(){
-        let movie = Movie(
-            title: "Inception",
-            genre: "Sci-Fi",
-            rating: 8.8,
-            year: 2010,
-            overview: "A skilled thief is offered a chance to have his criminal record erased if he can successfully perform inception — planting an idea into someone's subconscious. A skilled thief is offered a chance to have his criminal record erased if he can successfully perform inception — planting an idea into someone's subconscious. A skilled thief is offered a chance to have his criminal record erased if he can successfully perform inception — planting an idea into someone's subconscious. A skilled thief is offered a chance to have his criminal record erased if he can successfully perform inception — planting an idea into someone's subconscious.",
-            director: "Christopher Nolan",
-            duration: "2h 28min",
-            bannerColor: .systemBlue
-        )
+extension MovieDetailsController{
+    func loadData(movie: Movie?){
+        
+        guard let movie else {return}
+        
+//        let movie = Movie(
+//            title: "Inception",
+//            genre: ["Sci-Fi"].prefix(2).joined(separator: " • "),
+//            rating: 8.8,
+//            year: 2010,
+//            overview: "A skilled thief is offered a chance to have his criminal record erased if he can successfully perform inception — planting an idea into someone's subconscious. A skilled thief is offered a chance to have his criminal record erased if he can successfully perform inception — planting an idea into someone's subconscious. A skilled thief is offered a chance to have his criminal record erased if he can successfully perform inception — planting an idea into someone's subconscious. A skilled thief is offered a chance to have his criminal record erased if he can successfully perform inception — planting an idea into someone's subconscious.",
+//            director: "Christopher Nolan",
+//            duration: "2h 28min",
+//            //bannerColor: .systemBlue
+//        )
 
         genreLabel.text = movie.genre
         titleLabel.text = movie.title
@@ -174,8 +176,8 @@ extension MovieController{
         descriptionLabel.text = movie.overview
         directorLabel.text = "Director: \(movie.director)"
         yearLabel.text = String(movie.year)
-        duration.text = "Duration: \(movie.duration)"
-        bannerColor = movie.bannerColor
+        duration.text = "Duration: \(movie.duration ?? "0.0")"
+        bannerColor =  .blue
         
     }
 }

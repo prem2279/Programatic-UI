@@ -8,11 +8,10 @@
 import UIKit
 
 class CarsCollectionViewCell: UICollectionViewCell{
-    let label: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .white
-        return label
+    let imageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     override init (frame: CGRect){
@@ -29,8 +28,7 @@ class CarsCollectionViewCell: UICollectionViewCell{
 
 extension CarsCollectionViewCell{
     func setupUI() {
-        self.addSubview(label)
-        centerX(child: label, parent: self)
-        centerY(child: label, parent: self)
+        self.addSubview(imageView)
+        pinAllCorners(child: imageView,parent: self)
     }
 }
