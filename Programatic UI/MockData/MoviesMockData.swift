@@ -17,6 +17,7 @@ func getMoviesData()->[Movie]{
             overview: "A thief who enters dreams to steal secrets is given a final mission to implant an idea.",
             director: "Christopher Nolan",
             duration: "2h 28m",
+            images: nil
             //bannerColor: .systemIndigo
         ),
 
@@ -28,6 +29,7 @@ func getMoviesData()->[Movie]{
             overview: "Explorers travel through a wormhole to find a new home for humanity.",
             director: "Christopher Nolan",
             duration: "2h 49m",
+            images: nil
             //bannerColor: .systemBlue
         ),
 
@@ -39,6 +41,7 @@ func getMoviesData()->[Movie]{
             overview: "Batman faces the Joker, a criminal mastermind who creates chaos in Gotham.",
             director: "Christopher Nolan",
             duration: "2h 32m",
+            images: nil
             //bannerColor: .darkGray
         ),
 
@@ -50,6 +53,7 @@ func getMoviesData()->[Movie]{
             overview: "The Avengers assemble to undo Thanos' destruction and restore balance.",
             director: "Russo Brothers",
             duration: "3h 1m",
+            images: nil
             //bannerColor: .systemRed
         ),
 
@@ -61,6 +65,7 @@ func getMoviesData()->[Movie]{
             overview: "A hacker discovers reality is a simulation controlled by machines.",
             director: "Wachowskis",
             duration: "2h 16m",
+            images: nil
             //bannerColor: .black
         ),
 
@@ -72,6 +77,7 @@ func getMoviesData()->[Movie]{
             overview: "A love story unfolds aboard the doomed RMS Titanic.",
             director: "James Cameron",
             duration: "3h 15m",
+            images: nil
             //bannerColor: .systemTeal
         ),
 
@@ -83,6 +89,7 @@ func getMoviesData()->[Movie]{
             overview: "A mentally troubled comedian spirals into madness in Gotham City.",
             director: "Todd Phillips",
             duration: "2h 2m",
+            images: nil
             //bannerColor: .systemOrange
         ),
 
@@ -94,6 +101,7 @@ func getMoviesData()->[Movie]{
             overview: "Spider-Man’s identity is revealed, causing multiverse chaos.",
             director: "Jon Watts",
             duration: "2h 28m",
+            images: nil
             //bannerColor: .systemPink
         )
     ]

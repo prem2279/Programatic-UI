@@ -28,7 +28,7 @@ class MoviesDashboardController: UIViewController {
         
         //movies = getMovies()
         setUpUI()
-        getData(for: "https://dummyjson.com/products/category/smartphones")
+        getData(for: APIEndPoints.movies)
         
     }
 }
@@ -44,20 +44,26 @@ extension MoviesDashboardController{
         ])
     }
     
-    func getData(for url: String) {
+    func getData(for url: APIEndPoints) {
         
-        let completion: ([Movie]) -> () = { [weak self] movies in
+        let completion: (Result<Product, NetworkError>) -> Void = { [weak self] result in
+            switch result{
+            case .success(let data):
+                print(data)
                 DispatchQueue.main.async {
-                    //print("called")
-                    self?.movies = movies
+                    self?.movies = data.products
                     self?.movieTableView.reloadData()
                 }
+            case .failure(let error):
+                print(error)
+                
             }
+        }
         
         if isInternetAvailable{
-            NetworkManager.instance.getMovieDataFromServer(for: url, completion: completion)
+            NetworkManager.instance.request(endpoint: url, completion: completion)
         }else{
-            MockNetworkManager.instance.getMovieDataFromServer(for: url, completion: completion )
+            MockNetworkManager.instance.request(endpoint: url, completion: completion)
         }
     }
 }
@@ -89,6 +95,25 @@ extension MoviesDashboardController: UITableViewDelegate {
         navigationController?.pushViewController(destination, animated: true)
     }
         
+}
+
+extension MoviesDashboardController{
+    func errorMessage(message: String){
+        let alert = UIAlertController(
+            title: "Error",
+            message: message,
+            preferredStyle: .alert
+        )
+
+        let action = UIAlertAction(
+            title: "OK",
+            style: .default
+        )
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true)
+    }
 }
 
 

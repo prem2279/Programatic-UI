@@ -1,5 +1,5 @@
 //
-//  SpotifyMockData.swift
+//  SongMockData.swift
 //  Programatic UI
 //
 //  Created by Prem Kumar Gundu on 6/8/26.

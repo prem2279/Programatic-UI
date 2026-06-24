@@ -15,6 +15,7 @@ struct Movie: Decodable {
     let overview: String
     let director: String
     let duration: String?
+    let images: [String]?
     //let bannerColor: UIColor?
     
     enum CodingKeys: String, CodingKey{
@@ -25,6 +26,7 @@ struct Movie: Decodable {
         case overview = "description"
         case director = "brand"
         case duration
+        case images
     }
 }
 

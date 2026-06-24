@@ -1,5 +1,5 @@
 //
-//  SpotifyModal.swift
+//  SongModal.swift
 //  Programatic UI
 //
 //  Created by Prem Kumar Gundu on 6/8/26.

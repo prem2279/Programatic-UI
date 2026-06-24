@@ -6,7 +6,7 @@
 //
 
 enum TableViewCells{
-    static let spotifyCell = "SpotifyCell"
+    static let musicCell = "MusicCell"
     static let movieCell = "MovieCell"
 }
 

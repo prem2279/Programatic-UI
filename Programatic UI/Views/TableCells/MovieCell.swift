@@ -7,7 +7,7 @@ class MovieTableViewCell: UITableViewCell {
     private let movieImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(systemName: "film") // movie icon
+        //image.image = UIImage(systemName: "film") // movie icon
         image.tintColor = .white
         image.contentMode = .scaleAspectFit
         return image
@@ -92,8 +92,25 @@ extension MovieTableViewCell {
         genreLabel.text = movie.genre
         ratingLabel.text = "⭐ \(movie.rating)"
         yearLabel.text = String(movie.year)
+        if let images = movie.images, let firstImage = images.first {
+            UIImage().downloadImage(for: firstImage, completion: {
+                [weak self] result in
+                switch result{
+                case .success(let imageData):
+                    DispatchQueue.main.async {
+                        self?.movieImage.image = UIImage(data: imageData)
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.movieImage.image = UIImage(systemName: "film")
+                    }
+                    print(error)
+                }
+            })
+        }
     }
 }
+
 
 // MARK: - UI Setup
 

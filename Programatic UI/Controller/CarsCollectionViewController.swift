@@ -24,18 +24,18 @@ class CarsCollectionViewController: UIViewController{
         "flame",
         "leaf"
     ]),
-                 Catogory(name: "Folder", icons: [
-                    "folder",
-                    "folder.fill",
-                    "doc",
-                    "doc.fill",
-                    "doc.text",
-                    "doc.text.fill",
-                    "paperclip",
-                    "tray",
-                    "tray.fill",
-                    "archivebox"
-                 ])]
+     Catogory(name: "Folder", icons: [
+        "folder",
+        "folder.fill",
+        "doc",
+        "doc.fill",
+        "doc.text",
+        "doc.text.fill",
+        "paperclip",
+        "tray",
+        "tray.fill",
+        "archivebox"
+     ])]
     let carsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         //layout.scrollDirection = .horizontal

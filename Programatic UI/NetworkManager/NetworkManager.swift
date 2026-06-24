@@ -7,13 +7,15 @@
 
 import UIKit
 
-protocol NetworkProtocol{
-    func getSongDataFromServer(for url: String) -> [Song]?
-    func getMovieDataFromServer(for url: String, completion: @escaping([Movie]) -> ())
+protocol NetworkProtocol: AnyObject{
+    func request<T: Decodable>(
+        endpoint:APIEndPoints,
+        completion: @escaping (Result<T, NetworkError>) -> Void
+    )
     
 }
 
-final class NetworkManager: NetworkProtocol{
+final class NetworkManager: NetworkProtocol, Sendable{
     
     static let instance = NetworkManager()
     
@@ -21,49 +23,48 @@ final class NetworkManager: NetworkProtocol{
     
     func getSongDataFromServer(for url: String) -> [Song]?{
         // TODO: - Fetching Data from server Goes here, Once done remove Comment
-        // logic to get data from server
-        // convert the fetched data into data model of type Product
         return nil
     }
     
-    func getMovieDataFromServer(for url: String, completion: @escaping([Movie]) -> ()) {
-       
-        guard let serverURL = URL(string: url) else {
-            print("Server URL is Invalid")
+    func request<T: Decodable>(
+        endpoint:APIEndPoints,
+        completion: @escaping (Result<T, NetworkError>) -> Void
+    ){
+        
+        guard let serverURL = URL(string: endpoint.rawValue) else{
+            print("Invalid URL")
+            completion(.failure(.invalidURL))
             return
         }
         
         let urlRequest = URLRequest(url: serverURL)
+        
         URLSession.shared.dataTask(with: urlRequest) {
             data, response, error in
             
             if error != nil {
-                print("Error Occoured, \(error!.localizedDescription)")
+                print("Error occured \(error!.localizedDescription)")
+                completion(.failure(.serverError))
+                return
             }
             
-            guard let data = data else {
-               completion([])
-               return
+            guard let data else {
+                print("No data from the server")
+                completion(.failure(.noData))
+                return
             }
             
-            //print("response: ", response ?? "")
-           
             do {
-                let decoded = try JSONDecoder().decode(Product.self, from: data)
-                DispatchQueue.main.async{
-                   completion(decoded.products)
-                }
-               
-               
-            } catch {
-                print("Decoding error: \(error)")
-                completion([])
+                let decodedData = try JSONDecoder().decode(T.self, from: data)
+                completion(.success(decodedData))
+            }catch{
+                print("Error Occoured")
+                completion(.failure(.decodingError))
             }
             
-         }.resume()
-        
-        
+        }.resume()
     }
+    
 }
 
 

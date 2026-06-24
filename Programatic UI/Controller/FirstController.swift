@@ -11,7 +11,7 @@ class FirstController: UIViewController {
     
     private let topLeftButton = UIElements.button("Color", action: #selector(moveToRandomColorsScreen))
     private let middleLeftButton = UIElements.button("Cars", action: #selector(moveToCarsScreen))
-    private let bottomLeftButton = UIElements.button("Spotify", action: #selector(moveToSpotifyScreen))
+    private let bottomLeftButton = UIElements.button("Songs", action: #selector(moveToSongsScreen))
     
     private let topMiddleButton = UIElements.button("Profile", action: #selector(moveToProfileScreen))
     private let middleMiddleButton = UIElements.button("Second",action: #selector(moveToSecondScreen))
@@ -132,9 +132,9 @@ extension FirstController{
         navigationController?.pushViewController(destination, animated: true)
     }
     
-    @objc func moveToSpotifyScreen(){
-        let nextScreen = SpotifyTableViewController()
-        nextScreen.title = "Spotify"
+    @objc func moveToSongsScreen(){
+        let nextScreen = MusicTableViewController()
+        nextScreen.title = "Songs"
         nextScreen.view.backgroundColor = .black
         navigationController?.pushViewController(nextScreen, animated: true)
     }

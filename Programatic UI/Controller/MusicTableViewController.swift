@@ -1,5 +1,5 @@
 //
-//  SpotifyTableViewController.swift
+//  MusicTableViewController.swift
 //  Programatic UI
 //
 //  Created by Prem Kumar Gundu on 6/8/26.
@@ -7,16 +7,16 @@
 
 import UIKit
 
-protocol SpotifyProtocol{
+protocol MusicProtocol{
     func getData(for url: String) -> [Song]?
 }
 
-class SpotifyTableViewController: UIViewController {
+class MusicTableViewController: UIViewController {
     
     var songsData: [Song]?
     var isInternetAvailable = false
     
-    private let spotifyTableView: UITableView = {
+    private let songsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -28,20 +28,20 @@ class SpotifyTableViewController: UIViewController {
         
         songsData = getData(for: "https://google.com")
         //songsData = getSongsData()
-        spotifyTableView.register(SpotifyTableViewCell.self, forCellReuseIdentifier: TableViewCells.spotifyCell)
-        spotifyTableView.dataSource = self
+        songsTableView.register(SongTableViewCell.self, forCellReuseIdentifier: TableViewCells.musicCell)
+        songsTableView.dataSource = self
         
     }
 
 }
 
-extension SpotifyTableViewController: UITableViewDataSource{
+extension MusicTableViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         songsData?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCells.spotifyCell) as? SpotifyTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCells.musicCell) as? SongTableViewCell
         //cell?.backgroundColor = .white
         let song = songsData?[indexPath.row]
         cell?.configure(with: song)
@@ -52,20 +52,20 @@ extension SpotifyTableViewController: UITableViewDataSource{
     
 }
 
-extension SpotifyTableViewController{
+extension MusicTableViewController{
     func setUpUI(){
-        view.addSubview(spotifyTableView)
-        spotifyTableView.backgroundColor = .black
+        view.addSubview(songsTableView)
+        songsTableView.backgroundColor = .black
         NSLayoutConstraint.activate([
-            spotifyTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            spotifyTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            spotifyTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            spotifyTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            songsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            songsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            songsTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            songsTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
 }
 
-extension SpotifyTableViewController: SpotifyProtocol{
+extension MusicTableViewController: MusicProtocol{
     func getData(for url: String) -> [Song]? {
         
         if isInternetAvailable{

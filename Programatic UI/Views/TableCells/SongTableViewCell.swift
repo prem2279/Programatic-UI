@@ -1,5 +1,5 @@
 //
-//  SpotifyTableViewCell.swift
+//  SongTableViewCell.swift
 //  Programatic UI
 //
 //  Created by Prem Kumar Gundu on 6/8/26.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SpotifyTableViewCell: UITableViewCell {
+class SongTableViewCell: UITableViewCell {
     
     private let songImage: UIImageView = {
         let image = UIImageView()
@@ -94,7 +94,7 @@ class SpotifyTableViewCell: UITableViewCell {
 
 }
 
-extension SpotifyTableViewCell{
+extension SongTableViewCell{
     func configure(with song: Song?){
         guard let song else {return}
         songName.text = song.name
@@ -104,7 +104,7 @@ extension SpotifyTableViewCell{
     }
 }
 
-extension SpotifyTableViewCell{
+extension SongTableViewCell{
     private func loadCellUI(){
         
         contentView.backgroundColor = .black
